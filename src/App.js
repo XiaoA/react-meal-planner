@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Navigation from './components/Navigation/Navigation';
 import ImageSearchForm from './components/ImageSearchForm/ImageSearchForm';
+import ImageDisplay from './components/ImageDisplay/ImageDisplay';
 import Clarifai from 'clarifai';
 
 const app = new Clarifai.App({
@@ -13,34 +14,39 @@ class App extends Component {
     super();
     this.state = {
       input: '',
+      imageUrl: '',
     }
   }
 
   onInputChange = (event) => {
-    //    console.log(event.target.value);
+    this.setState({input: event.target.value});
   }
 
   onButtonSubmit = () => {
+    this.setState({imageUrl: this.state.input});
     app.models
       .predict(
-        "bd367be194cf45149e75f01d59f77ba7",
-        "https://samples.clarifai.com/food.jpg")
+        Clarifai.FOOD_MODEL,
+        this.state.input)
       .then(
         function(response) {
-          console.log(response);
+          console.log(response.outputs[0].data.concepts.map(function(element) {return element.name;}));
         },
         function(err) {
-          console.log(err);// there was an error
+          console.log(err);
         }
       );
   }
-
+  
   render() {
     return (
       <div className="App">
         <Navigation />
-        <ImageSearchForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit} />
-        {/*<ImageDisplay />*/}
+        <ImageSearchForm
+          onInputChange={this.onInputChange} 
+          onButtonSubmit={this.onButtonSubmit}
+          />
+        <ImageDisplay imageUrl={this.state.imageUrl}/>
       </div>
     );
   }
