@@ -3,6 +3,7 @@ import './App.css';
 import Navigation from './components/Navigation/Navigation';
 import ImageSearchForm from './components/ImageSearchForm/ImageSearchForm';
 import ImageDisplay from './components/ImageDisplay/ImageDisplay';
+import IngredientList from './components/IngredientList/IngredientList';
 import Clarifai from 'clarifai';
 
 const app = new Clarifai.App({
@@ -15,11 +16,17 @@ class App extends Component {
     this.state = {
       input: '',
       imageUrl: '',
+      ingredients: []
     }
   }
 
+  extractIngredients = (data) => {
+    const clarifaiIngredients = data.outputs[0].data.concepts.map(ingredient => ingredient.name);
+    this.setState({ingredients: clarifaiIngredients});
+  }
+
   onInputChange = (event) => {
-    this.setState({input: event.target.value});
+    this.setState({input: event.target.value}); 
   }
 
   onButtonSubmit = () => {
@@ -28,17 +35,11 @@ class App extends Component {
       .predict(
         Clarifai.FOOD_MODEL,
         this.state.input)
-      .then(
-        function(response) {
-          console.log(response.outputs[0].data.concepts.map(function(element) {return element.name;}));
-        },
-        function(err) {
-          console.log(err);
-        }
-      );
+      .then(response => this.extractIngredients(response))
+      .catch(err => console.log(err));
   }
-  
-  render() {
+
+  render(){
     return (
       <div className="App">
         <Navigation />
@@ -47,6 +48,7 @@ class App extends Component {
           onButtonSubmit={this.onButtonSubmit}
           />
         <ImageDisplay imageUrl={this.state.imageUrl}/>
+        <IngredientList ingredients={this.state.ingredients}/>
       </div>
     );
   }
