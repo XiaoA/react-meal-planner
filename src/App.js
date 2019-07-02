@@ -48,6 +48,7 @@ class App extends Component {
           onButtonSubmit={this.onButtonSubmit}
           />
         <ImageDisplay imageUrl={this.state.imageUrl}/>
+        <br />
         <IngredientList ingredients={this.state.ingredients}/>
       </div>
     );

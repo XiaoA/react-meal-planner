@@ -8,9 +8,12 @@ const IngredientList = ({ingredients}) => {
                                    );
   return (
     <div>
-      <ul className='ingredient-list'> {foodItems} </ul>
+      <article className="pa3 pa5-ns">
+        <ul className="list pl0 ml0 center mw6 ba b--light-silver br2">
+          <li className="ph3 pv3 bb b--light-silver">{foodItems}</li>
+        </ul>
+      </article>
     </div>
-      
   );
 }
 
