@@ -2,13 +2,15 @@
   "name": "meal_planner_app",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
+  "engines": {
+    "node": "11.4.0"
+  }
+"dependencies": {
     "clarifai": "^2.9.0",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-scripts": "2.0.5",
-    "tachyons": "^4.11.1",
-    "node": "11.4.0"
+    "tachyons": "^4.11.1"
   },
   "scripts": {
     "start": "react-scripts start",
