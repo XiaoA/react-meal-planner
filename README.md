@@ -1,3 +1,5 @@
+## Meal Planner App
+
 Have you ever seen a dish, and wondered how to reverse engineer the ingredients?
 
 This React app uses the "Food" recognition AI model from [Clarifai](https://www.clarifai.com/models/food-image-recognition-model-bd367be194cf45149e75f01d59f77ba7) to list the ingredients from a picture of food.
