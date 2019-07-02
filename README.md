@@ -1,4 +1,4 @@
-h## Meal Planner App
+## Meal Planner App
 
 Have you ever seen a dish, and wondered how to reverse engineer the ingredients?
 
