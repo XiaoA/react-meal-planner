@@ -2,8 +2,8 @@ import React from 'react';
 
 const ImageDisplay = ({ imageUrl }) => {
   return (
-    <div className='absolute mt2 ml2'>
-      <img alt="food" src={imageUrl} width='500px' height='auto'/>
+    <div className='fl w-100 mt2 ml2'>
+      <img id = 'input-image' alt="" src={imageUrl} width='500px' height='auto'/>
     </div>
   ); 
 }
