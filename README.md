@@ -11,3 +11,5 @@ I started this app to learn how to implement search, AI, and using React to work
 - Add/remove ingredients
 - Send the ingredient list to a shopping list, Instacart, or recipe API
 - Allow users to take photos
+
+To view the app in action, go to: [https://aeb-meal-planner.herokuapp.com/](https://aeb-meal-planner.herokuapp.com/).
